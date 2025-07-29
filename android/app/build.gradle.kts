@@ -6,6 +6,14 @@ plugins {
     id("com.google.gms.google-services")
 }
 
+// --- ADDED: read keystore settings from android/key.properties (if present)
+val keystorePropertiesFile = rootProject.file("key.properties")
+val keystoreProperties = java.util.Properties().apply {
+    if (keystorePropertiesFile.exists()) {
+        load(java.io.FileInputStream(keystorePropertiesFile))
+    }
+}
+
 android {
     namespace = "com.example.homeblend"
     compileSdk = 36
@@ -31,11 +39,30 @@ android {
         versionName = flutter.versionName
     }
 
+    // --- ADDED: signing config for release (only filled if key.properties exists)
+    signingConfigs {
+        create("release") {
+            if (keystorePropertiesFile.exists()) {
+                storeFile = file(keystoreProperties["storeFile"] as String)
+                storePassword = keystoreProperties["storePassword"] as String
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            // CHANGED: use real release key if available; fall back to debug like you had
+            signingConfig = if (keystorePropertiesFile.exists()) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
+
+            // (optional) keep as you like; you can enable these later for smaller APKs
+            // isMinifyEnabled = false
+            // isShrinkResources = false
         }
     }
 }
@@ -44,11 +71,9 @@ dependencies {
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.16.0"))
 
-
     // TODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
-
 
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
