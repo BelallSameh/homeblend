@@ -12,9 +12,9 @@ plugins {
 
 // --- ADDED: read keystore settings from android/key.properties (if present)
 val keystorePropertiesFile = rootProject.file("key.properties")
-val keystoreProperties = java.util.Properties().apply {
+val keystoreProperties = Properties().apply {
     if (keystorePropertiesFile.exists()) {
-        load(java.io.FileInputStream(keystorePropertiesFile))
+        load(FileInputStream(keystorePropertiesFile))
     }
 }
 
