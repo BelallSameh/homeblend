@@ -38,7 +38,7 @@ dependencies:
   image_picker: ^1.0.7           # for avatar selection if not added
   shared_preferences: ^2.2.3     # for local favourites if you kept hybrid approach
   google_fonts: ^6.1.0
-  ar_flutter_plugin: ^0.7.3           # ARCore/ARKit wrapper
+  #ar_flutter_plugin: ^0.7.3           # ARCore/ARKit wrapper
   vector_math: ^2.1.0                 # for Vector3/Vector4 types
   camera: ^0.10.5+5
   permission_handler: ^12.0.1

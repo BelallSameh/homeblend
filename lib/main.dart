@@ -17,19 +17,19 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:camera/camera.dart';
 import 'dart:math'   as math;            // keep if you removed it by mistake
 
-// Single import for ALL AR classes:
-import 'package:ar_flutter_plugin/managers/ar_location_manager.dart';
-import 'package:ar_flutter_plugin/managers/ar_session_manager.dart';
-import 'package:ar_flutter_plugin/managers/ar_object_manager.dart';
-import 'package:ar_flutter_plugin/managers/ar_anchor_manager.dart';
-import 'package:ar_flutter_plugin/ar_flutter_plugin.dart';
-import 'package:ar_flutter_plugin/datatypes/config_planedetection.dart';
-import 'package:ar_flutter_plugin/datatypes/node_types.dart';
-import 'package:ar_flutter_plugin/datatypes/hittest_result_types.dart';
-import 'package:ar_flutter_plugin/models/ar_node.dart';
-import 'package:ar_flutter_plugin/models/ar_hittest_result.dart';
-import 'package:vector_math/vector_math_64.dart' hide Colors;
-import 'package:ar_flutter_plugin/models/ar_anchor.dart';    // for ARPlaneAnchor
+// // Single import for ALL AR classes:
+// import 'package:ar_flutter_plugin/managers/ar_location_manager.dart';
+// import 'package:ar_flutter_plugin/managers/ar_session_manager.dart';
+// import 'package:ar_flutter_plugin/managers/ar_object_manager.dart';
+// import 'package:ar_flutter_plugin/managers/ar_anchor_manager.dart';
+// import 'package:ar_flutter_plugin/ar_flutter_plugin.dart';
+// import 'package:ar_flutter_plugin/datatypes/config_planedetection.dart';
+// import 'package:ar_flutter_plugin/datatypes/node_types.dart';
+// import 'package:ar_flutter_plugin/datatypes/hittest_result_types.dart';
+// import 'package:ar_flutter_plugin/models/ar_node.dart';
+// import 'package:ar_flutter_plugin/models/ar_hittest_result.dart';
+// import 'package:vector_math/vector_math_64.dart' hide Colors;
+// import 'package:ar_flutter_plugin/models/ar_anchor.dart';    // for ARPlaneAnchor
 
 extension TakeLastExtension<T> on List<T> {
   Iterable<T> takeLast(int n) => skip(length - math.min(length, n));
@@ -3336,102 +3336,102 @@ class _CurvedClipper extends CustomClipper<Path> {
 //   }
 // }
 
-class ARViewScreen extends StatefulWidget {
-  final Product product;
-  const ARViewScreen({Key? key, required this.product}) : super(key: key);
-  @override
-  _ARViewScreenState createState() => _ARViewScreenState();
-}
-
-class _ARViewScreenState extends State<ARViewScreen> {
-  late ARSessionManager _sessionManager;
-  late ARObjectManager  _objectManager;
-  late ARAnchorManager  _anchorManager;
-  ARNode?               _modelNode;
-
-  @override
-  void dispose() {
-    _sessionManager.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('View AR')),
-      body: ARView(
-        onARViewCreated: _onARViewCreated,
-        planeDetectionConfig: PlaneDetectionConfig.horizontal,
-      ),
-    );
-  }
-
-  void _onARViewCreated(
-      ARSessionManager sessionManager,
-      ARObjectManager objectManager,
-      ARAnchorManager anchorManager,
-      ARLocationManager locationManager,
-      ) {
-    _sessionManager = sessionManager;
-    _objectManager  = objectManager;
-    _anchorManager  = anchorManager;
-
-    _sessionManager.onInitialize(
-      showFeaturePoints: false,
-      showPlanes: true,
-      customPlaneTexturePath: "assets/plane.png",
-      showWorldOrigin: false,
-      handleTaps: true,
-    );
-    _objectManager.onInitialize();
-
-    // 1) when user taps a plane...
-    _sessionManager.onPlaneOrPointTap = _onPlaneTap;
-
-    // 2) when user finishes pan/rotate
-    _objectManager.onPanEnd      = _onPanEnd;
-    _objectManager.onRotationEnd = _onRotationEnd;
-  }
-
-  Future<void> _onPlaneTap(List<ARHitTestResult> hits) async {
-    if (_modelNode != null) return;
-
-    final hit = hits.firstWhere(
-          (h) => h.type == ARHitTestResultType.plane,
-      orElse: () => hits.first,
-    );
-
-    // create & add a plane anchor
-    final planeAnchor = ARPlaneAnchor(transformation: hit.worldTransform);
-    await _anchorManager.addAnchor(planeAnchor);
-
-    // create the 3D node
-    final rotationMatrix = hit.worldTransform.getRotation();
-    final quaternion = Quaternion.fromRotation(rotationMatrix);
-
-// create the 3D node
-    final node = ARNode(
-      type: NodeType.webGLB,
-      uri: widget.product.drive.first,
-      scale: Vector3(1, 1, 1),
-      position: hit.worldTransform.getTranslation(),
-      rotation: Vector4(quaternion.x, quaternion.y, quaternion.z, quaternion.w),
-    );
-
-    // attach it
-    final added = await _objectManager.addNode(node, planeAnchor: planeAnchor);
-    if (added == true) {
-      _modelNode = node;
-    }
-  }
-
-  void _onPanEnd(String nodeName, Matrix4 newTransform) {
-    if (_modelNode?.name != nodeName) return;
-    _modelNode!.transformNotifier.value = newTransform;
-  }
-
-  void _onRotationEnd(String nodeName, Matrix4 newTransform) {
-    if (_modelNode?.name != nodeName) return;
-    _modelNode!.transformNotifier.value = newTransform;
-  }
-}
+// class ARViewScreen extends StatefulWidget {
+//   final Product product;
+//   const ARViewScreen({Key? key, required this.product}) : super(key: key);
+//   @override
+//   _ARViewScreenState createState() => _ARViewScreenState();
+// }
+//
+// class _ARViewScreenState extends State<ARViewScreen> {
+//   late ARSessionManager _sessionManager;
+//   late ARObjectManager  _objectManager;
+//   late ARAnchorManager  _anchorManager;
+//   ARNode?               _modelNode;
+//
+//   @override
+//   void dispose() {
+//     _sessionManager.dispose();
+//     super.dispose();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: const Text('View AR')),
+//       body: ARView(
+//         onARViewCreated: _onARViewCreated,
+//         planeDetectionConfig: PlaneDetectionConfig.horizontal,
+//       ),
+//     );
+//   }
+//
+//   void _onARViewCreated(
+//       ARSessionManager sessionManager,
+//       ARObjectManager objectManager,
+//       ARAnchorManager anchorManager,
+//       ARLocationManager locationManager,
+//       ) {
+//     _sessionManager = sessionManager;
+//     _objectManager  = objectManager;
+//     _anchorManager  = anchorManager;
+//
+//     _sessionManager.onInitialize(
+//       showFeaturePoints: false,
+//       showPlanes: true,
+//       customPlaneTexturePath: "assets/plane.png",
+//       showWorldOrigin: false,
+//       handleTaps: true,
+//     );
+//     _objectManager.onInitialize();
+//
+//     // 1) when user taps a plane...
+//     _sessionManager.onPlaneOrPointTap = _onPlaneTap;
+//
+//     // 2) when user finishes pan/rotate
+//     _objectManager.onPanEnd      = _onPanEnd;
+//     _objectManager.onRotationEnd = _onRotationEnd;
+//   }
+//
+//   Future<void> _onPlaneTap(List<ARHitTestResult> hits) async {
+//     if (_modelNode != null) return;
+//
+//     final hit = hits.firstWhere(
+//           (h) => h.type == ARHitTestResultType.plane,
+//       orElse: () => hits.first,
+//     );
+//
+//     // create & add a plane anchor
+//     final planeAnchor = ARPlaneAnchor(transformation: hit.worldTransform);
+//     await _anchorManager.addAnchor(planeAnchor);
+//
+//     // create the 3D node
+//     final rotationMatrix = hit.worldTransform.getRotation();
+//     final quaternion = Quaternion.fromRotation(rotationMatrix);
+//
+// // create the 3D node
+//     final node = ARNode(
+//       type: NodeType.webGLB,
+//       uri: widget.product.drive.first,
+//       scale: Vector3(1, 1, 1),
+//       position: hit.worldTransform.getTranslation(),
+//       rotation: Vector4(quaternion.x, quaternion.y, quaternion.z, quaternion.w),
+//     );
+//
+//     // attach it
+//     final added = await _objectManager.addNode(node, planeAnchor: planeAnchor);
+//     if (added == true) {
+//       _modelNode = node;
+//     }
+//   }
+//
+//   void _onPanEnd(String nodeName, Matrix4 newTransform) {
+//     if (_modelNode?.name != nodeName) return;
+//     _modelNode!.transformNotifier.value = newTransform;
+//   }
+//
+//   void _onRotationEnd(String nodeName, Matrix4 newTransform) {
+//     if (_modelNode?.name != nodeName) return;
+//     _modelNode!.transformNotifier.value = newTransform;
+//   }
+// }
