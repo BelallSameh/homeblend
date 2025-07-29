@@ -19,11 +19,14 @@
       }
     }
   },
-  "hosting": {
-    "public": "build/web",
-    "ignore": ["firebase.json", "/.", "/node_modules/*"],
-    "rewrites": [
-      { "source": "", "destination": "/index.html" }
-    ]
-  }
+  "hosting": [
+    {
+      "site": "homeblend-f39f9",
+      "public": "build/web",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        { "glob": "**", "destination": "/index.html" }
+      ]
+    }
+  ]
 }
