@@ -1,3 +1,7 @@
+// ── add these two lines very top of the file ─────────────────────────────
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
