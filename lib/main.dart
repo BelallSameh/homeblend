@@ -96,7 +96,7 @@ class S {
       'subtotal': 'Subtotal',
       'delivery': 'Delivery',
       'total': 'Total',
-      'checkoutMock': 'Demo only.',
+      'checkoutMock': 'This feature will be available in an upcoming update.',
       'scanQr': 'Scan QR',
       'qrTitle': 'Scan QR Code',
       'manualCode': 'Manual Code',
@@ -1474,7 +1474,7 @@ class ContactUsScreen extends StatelessWidget {
                   children: [
                     Text("Phone", style: labelStyle),
                     const SizedBox(height: 4),
-                    Text("+20 109 323 1831", style: contentStyle),
+                    Text("+20 122 287 8031", style: contentStyle),
                   ],
                 ),
               ],
