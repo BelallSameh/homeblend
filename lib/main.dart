@@ -38,7 +38,6 @@ extension TakeLastExtension<T> on List<T> {
 late List<CameraDescription> cameras;
 
 Future<void> main() async {
-  //Gemini.init(apiKey: 'AIzaSyD1yfNIHnLvjEL0Fm8DiAtaur7lj1GGkFw');
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
