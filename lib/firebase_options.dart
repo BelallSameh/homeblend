@@ -41,8 +41,8 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB18pIeq_XpxCFjV4bmzZ_ij7TFMnHHvlk',
-    appId: '1:451468018906:web:908845ba133693f459d1e3',
+    apiKey: '',
+    appId: '',
     messagingSenderId: '451468018906',
     projectId: 'homeblend-f39f9',
     authDomain: 'homeblend-f39f9.firebaseapp.com',
@@ -51,16 +51,16 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCEIzCXwqSr4duD16Uvp8LprvXJdXqpZaA',
-    appId: '1:451468018906:android:72171e276ac65b8a59d1e3',
+    apiKey: '',
+    appId: '',
     messagingSenderId: '451468018906',
     projectId: 'homeblend-f39f9',
     storageBucket: 'homeblend-f39f9.firebasestorage.app',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDpitPV38Pou6CyfL_uWc3pAJGMzb_DSEo',
-    appId: '1:451468018906:ios:97f61450d3d07f2159d1e3',
+    apiKey: '',
+    appId: '',
     messagingSenderId: '451468018906',
     projectId: 'homeblend-f39f9',
     storageBucket: 'homeblend-f39f9.firebasestorage.app',
@@ -70,8 +70,8 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDpitPV38Pou6CyfL_uWc3pAJGMzb_DSEo',
-    appId: '1:451468018906:ios:97f61450d3d07f2159d1e3',
+    apiKey: '',
+    appId: '',
     messagingSenderId: '451468018906',
     projectId: 'homeblend-f39f9',
     storageBucket: 'homeblend-f39f9.firebasestorage.app',
@@ -81,8 +81,8 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyB18pIeq_XpxCFjV4bmzZ_ij7TFMnHHvlk',
-    appId: '1:451468018906:web:d4f987b83909d73c59d1e3',
+    apiKey: '',
+    appId: '',
     messagingSenderId: '451468018906',
     projectId: 'homeblend-f39f9',
     authDomain: 'homeblend-f39f9.firebaseapp.com',
