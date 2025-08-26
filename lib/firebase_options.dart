@@ -23,20 +23,11 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -66,4 +57,37 @@ class DefaultFirebaseOptions {
     projectId: 'homeblend-f39f9',
     storageBucket: 'homeblend-f39f9.firebasestorage.app',
   );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyDpitPV38Pou6CyfL_uWc3pAJGMzb_DSEo',
+    appId: '1:451468018906:ios:97f61450d3d07f2159d1e3',
+    messagingSenderId: '451468018906',
+    projectId: 'homeblend-f39f9',
+    storageBucket: 'homeblend-f39f9.firebasestorage.app',
+    androidClientId: '451468018906-jshdbftkoaqqc6oibmqc8imp2qrj55a2.apps.googleusercontent.com',
+    iosClientId: '451468018906-s242k3aa3k8rs37boj2m5j7mfg1vl7mg.apps.googleusercontent.com',
+    iosBundleId: 'com.example.homeblend',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyDpitPV38Pou6CyfL_uWc3pAJGMzb_DSEo',
+    appId: '1:451468018906:ios:97f61450d3d07f2159d1e3',
+    messagingSenderId: '451468018906',
+    projectId: 'homeblend-f39f9',
+    storageBucket: 'homeblend-f39f9.firebasestorage.app',
+    androidClientId: '451468018906-jshdbftkoaqqc6oibmqc8imp2qrj55a2.apps.googleusercontent.com',
+    iosClientId: '451468018906-s242k3aa3k8rs37boj2m5j7mfg1vl7mg.apps.googleusercontent.com',
+    iosBundleId: 'com.example.homeblend',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyB18pIeq_XpxCFjV4bmzZ_ij7TFMnHHvlk',
+    appId: '1:451468018906:web:d4f987b83909d73c59d1e3',
+    messagingSenderId: '451468018906',
+    projectId: 'homeblend-f39f9',
+    authDomain: 'homeblend-f39f9.firebaseapp.com',
+    storageBucket: 'homeblend-f39f9.firebasestorage.app',
+    measurementId: 'G-7BFDB9K3SJ',
+  );
+
 }
